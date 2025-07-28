@@ -1,0 +1,41 @@
+package activities;
+
+public class Activity4 {
+
+	public static void main(String[] args) {
+		// Initialize an array with numbers in random order
+		int[] numbers = {58, 19, 69, 05, 40, 18, 23, 78};
+		
+		// Display the array before sorting
+		System.out.print("Before sorting: ");
+        printArray(numbers);
+        
+        // Insertion sort logic
+        for (int i = 1; i < numbers.length; i++) {
+            int key = numbers[i];
+            int j = i - 1;
+
+         // Move elements of numbers[0..i-1], that are greater than key,
+         // to one position ahead of their current position
+            while (j >= 0 && numbers[j] > key) {
+                numbers[j + 1] = numbers[j];
+                j = j - 1;
+            }
+            numbers[j + 1] = key;
+        }
+
+         // Display the array after sorting
+            System.out.print("After sorting: ");
+            printArray(numbers);
+    }
+
+         // Helper method to print the array
+            public static void printArray(int[] array) {
+            for (int num : array) {
+            System.out.print(num + " ");
+        }
+            System.out.println();
+        
+    }
+
+}
