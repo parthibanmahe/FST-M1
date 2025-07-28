@@ -1,0 +1,18 @@
+package activities;
+
+public class Activity1 {
+
+	public static void main(String[] args) {
+		// Create object of car
+		Car honda = new Car("Black", "Automatic", 2020);
+		
+		// Print details of the car
+		honda.displayCharacteristics();
+		// Move the car\
+		honda.accelarate();
+		// Stop the car
+		honda.brake();
+
+	}
+
+}
