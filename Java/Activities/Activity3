@@ -1,0 +1,44 @@
+package activities;
+
+public class Activity3 {
+
+	public static void main(String[] args) {
+		// Time in seconds
+		double seconds = 1000000000;
+		
+		// Orbital periods in Earth seconds 
+		// 365.25 Days * 86400 seconds (Per day) 
+		double EarthSeconds = 31557600;
+		
+		// Orbital periods on each planet in seconds
+		double MercurySeconds = 0.2408467;
+		double VenusSeconds = 0.61519726;
+		double MarsSeconds = 1.8808158;
+		double JupitorSeconds = 11.862615;
+		double SaturnSeconds = 29.447498;
+		double UranusSeconds = 84.016846;
+		double NeptuneSeconds = 164.79132;
+		 
+		// Calculate age on each planet
+        double EarthAge = seconds / EarthSeconds;	
+        double MercuryAge = EarthAge / MercurySeconds;
+        double VenusAge = EarthAge / VenusSeconds;
+        double MarsAge = EarthAge / MarsSeconds;
+        double JupitorAge = EarthAge / JupitorSeconds;
+        double SaturnAge = EarthAge / SaturnSeconds;
+        double UranusAge = EarthAge / UranusSeconds;
+        double NeptuneAge = EarthAge / NeptuneSeconds;
+        
+        // Print results
+        System.out.println("Age on Earth: " + EarthAge);
+        System.out.println("Age on Mercury: " + MercuryAge);
+        System.out.println("Age on Venus: " + VenusAge);
+        System.out.println("Age on Mars: " + MarsAge);
+        System.out.println("Age on Jupitor: " + JupitorAge);
+        System.out.println("Age on Saturn: " + SaturnAge);
+        System.out.println("Age on Uranus: " + UranusAge);
+        System.out.println("Age on Neptune: " + NeptuneAge);
+	
+	}
+
+}
