@@ -1,0 +1,166 @@
+<con:soapui-project xmlns:con="http://eviware.com/soapui/config" id="a2626281-7b0f-452f-86f6-e30f89fa46ec" created="3.61.0" activeEnvironment="Default environment" encryptionMode="Not encrypted" name="JDBC-ACTIVITY" projectVersion="" updated="3.62.0 2025-09-03T10:21:09Z" resourceRoot="">
+<con:settings/>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:WsdlInterface" id="e3047564-6a71-4b37-87c8-663e20f51357" wsaVersion="NONE" name="CalculatorSoap12" type="wsdl" bindingName="{http://tempuri.org/}CalculatorSoap12" soapVersion="1_2" anonymous="optional" definition="http://www.dneonline.com/calculator.asmx?WSDL">
+<con:settings id="a0bf937c-621d-43a0-909a-3046c0c03081"/>
+<con:settings/>
+<con:parameters>
+<con:parameter required="true">
+<con:name>IP</con:name>
+<con:value>IP</con:value>
+<con:style>TEMPLATE</con:style>
+<con:default>IP</con:default>
+<con:path xsi:nil="true"/>
+<con:description xsi:nil="true"/>
+</con:parameter>
+</con:parameters>
+<con:representation type="RESPONSE">
+<con:mediaType>application/json; charset=utf-8</con:mediaType>
+<con:status>200</con:status>
+<con:params/>
+<con:element xmlns:json="http://ipwhois.app/json/">json:Response</con:element>
+</con:representation>
+<con:request name="Request 1" id="9c15100f-5c93-42cd-9508-bfb217b82e4f" mediaType="application/json">
+<con:settings/>
+<con:endpoint>http://ipwhois.app</con:endpoint>
+<con:credentials>
+<con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+<con:authType>No Authorization</con:authType>
+</con:credentials>
+<con:parameters>
+<con:entry key="IP" value="IP"/>
+</con:parameters>
+<con:parameterOrder>
+<con:entry>IP</con:entry>
+</con:parameterOrder>
+</con:request>
+
+<con:testSuite id="d36de763-0ba8-46f6-832d-7d67d0982d31" name="http://ipwhois.app Test Suite">
+<con:settings id="0c95f743-93a3-4d09-b001-5b7b2872a563"/>
+<con:runType>SEQUENTIAL</con:runType>
+<con:testCase id="8d8c082d-4a88-4609-91e8-79a35cf175d2" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Activity 6" searchProperties="true" timeout="0">
+<con:settings/>
+<con:testStep type="datasource" name="Data Source" id="e30bd81d-124d-4eda-babf-feaae3d42ed4">
+<con:settings/>
+<con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+<con:dataSource type="Data Generator">
+<con:configuration>
+<generatedDataCount>10</generatedDataCount>
+<generatorsTotalNumber>1</generatorsTotalNumber>
+<lastSelectedProperty>0</lastSelectedProperty>
+<GeneratorType0>COMP</GeneratorType0>
+<PropertyName0>IP</PropertyName0>
+<repetitionCountIP>0</repetitionCountIP>
+<repeatValuesIP>false</repeatValuesIP>
+<ComputerAddressTypeIP>IPv4</ComputerAddressTypeIP>
+<escapeSpaceSequence/>
+</con:configuration>
+</con:dataSource>
+<con:shared>true</con:shared>
+<con:restartShared>true</con:restartShared>
+<con:property>IP</con:property>
+<con:restartOnRun>true</con:restartOnRun>
+<con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+</con:config>
+</con:testStep>
+<con:testStep type="restrequest" name="Get IP" id="e2335c53-4c8e-4344-9cbb-886e296fc838">
+<con:settings/>
+<con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="http://ipwhois.app" resourcePath="/json/{IP}" methodName="IP" xsi:type="con:RestRequestStep">
+<con:restRequest name="Get IP" id="9c15100f-5c93-42cd-9508-bfb217b82e4f" mediaType="application/json">
+<con:settings>
+<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><xml-fragment/></con:setting>
+</con:settings>
+<con:endpoint>http://ipwhois.app</con:endpoint>
+<con:request/>
+<con:originalUri>http://ipwhois.app/json/</con:originalUri>
+<con:assertion type="Valid HTTP Status Codes" id="99e78454-aebf-4b2c-a86c-69e3df21d46d" name="Valid HTTP Status Codes">
+<con:settings/>
+<con:configuration>
+<codes>200</codes>
+</con:configuration>
+</con:assertion>
+<con:credentials>
+<con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+<con:authType>No Authorization</con:authType>
+</con:credentials>
+<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+<con:parameters>
+<con:entry key="IP" value="${Data Source#IP}"/>
+</con:parameters>
+<con:parameterOrder>
+<con:entry>IP</con:entry>
+</con:parameterOrder>
+</con:restRequest>
+</con:config>
+</con:testStep>
+<con:testStep type="datasourceloop" name="Data Source Loop" id="36bda328-bf33-4448-b8a5-bc8f4d312c32">
+<con:settings/>
+<con:config>
+<dataSourceStep>Data Source</dataSourceStep>
+<targetStep>Get IP</targetStep>
+<discardResults>true</discardResults>
+</con:config>
+</con:testStep>
+<con:testStep type="datasink" name="Data Sink" id="1830f39c-ae08-4a6b-9d10-55c5a47d11e2">
+<con:settings/>
+<con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSinkStep">
+<con:dataSink type="JDBC">
+<con:configuration>
+<driver>com.mysql.jdbc.Driver</driver>
+<connstr>jdbc:mysql://db4free.net:3306/fstm1db?user=fstm1db&password=PASS_VALUE</connstr>
+<pass>6Y6NowPybq</pass>
+<Connection>FSTConnection( Default environment )</Connection>
+<query>insert into coordinates values(?,?,?);</query>
+<stored-procedure>false</stored-procedure>
+</con:configuration>
+</con:dataSink>
+<con:properties>
+<con:property>
+<con:name>country</con:name>
+<con:value>${Get IP#Response#$['country']}</con:value>
+</con:property>
+<con:property>
+<con:name>latitude</con:name>
+<con:value>${Get IP#Response#$['latitude']}</con:value>
+</con:property>
+<con:property>
+<con:name>longitude</con:name>
+<con:value>${Get IP#Response#$['longitude']}</con:value>
+</con:property>
+</con:properties>
+</con:config>
+</con:testStep>
+<con:properties/>
+<con:reportParameters/>
+</con:testCase>
+<con:properties/>
+<con:reportParameters/>
+</con:testSuite>
+<con:requirements/>
+<con:properties/>
+<con:wssContainer/>
+<con:databaseConnectionContainer>
+<con:databaseConnection>
+<con:name>FSTConnection</con:name>
+<con:driver>com.mysql.jdbc.Driver</con:driver>
+<con:connectionString>jdbc:mysql://db4free.net:3306/fstm1db?user=fstm1db&password=PASS_VALUE</con:connectionString>
+<con:password>6Y6NowPybq</con:password>
+<con:connectionProperties/>
+</con:databaseConnection>
+</con:databaseConnectionContainer>
+<con:jmsConnectionContainer/>
+<con:oAuth2ProfileContainer/>
+<con:oAuth1ProfileContainer/>
+<con:reporting>
+<con:xmlTemplates/>
+<con:parameters/>
+</con:reporting>
+<con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+<con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls // This code is often used for adding custom authentication to ReadyAPI functional tests // If hardcoding the token, uncomment and change line 5 // token = '4567' // If your token is parameterized in Project level custom property, uncomment line 8 // token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue() // To modify all outgoing calls, remove comments from lines 11 to 16 // headers = request.requestHeaders // if (headers.containsKey('auth_token2') == false) { // headers.put('auth_token2', token) // request.requestHeaders = headers // }</con:script>
+</con:eventHandlers>
+<con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+<con:script>// Save all test step results into files // Change the directory path in line 5 to a location where you want to store details // then uncomment lines 5 to 10 // filePath = 'C:\\tempOutputDirectory\\' // fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true) // pw = new java.io.PrintWriter(fos) // testStepResult.writeTo(pw) // pw.close() // fos.close()</con:script>
+</con:eventHandlers>
+<con:authRepository/>
+<con:tags/>
+</con:soapui-project>
+    
